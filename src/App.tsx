@@ -13,6 +13,7 @@ import PartnerPage from './pages/PartnerPage';
 import PitchPage from './pages/PitchPage';
 import CreativePlaybookPage from './pages/CreativePlaybookPage';
 import FallExhibitionPage from './pages/FallExhibitionPage';
+import FallExhibitionArchivePage from './pages/FallExhibitionArchivePage';
 import { NotFoundPage } from './pages/Pages';
 import { useDocumentMeta, useLocation } from './lib/router';
 import './index.css';
@@ -32,6 +33,7 @@ function HomePage() {
 }
 
 function renderRoute(path: string, search: string) {
+  if (path === '/work/fall-exhibition/original') return <FallExhibitionArchivePage />;
   const projectMatch = path.match(/^\/work\/([\w-]+)$/);
   // The Creative Playbook and It’s Okay to Fall have their own editorial pages instead of the standard project template.
   if (projectMatch?.[1] === 'creative-playbook') return <CreativePlaybookPage />;

@@ -11,6 +11,7 @@ export { site } from './content/site';
 export const routes = [
   '/',
   '/work',
+  '/work/fall-exhibition/original',
   '/events',
   '/get-involved',
   '/share-an-idea',

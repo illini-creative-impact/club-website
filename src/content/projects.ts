@@ -2,7 +2,6 @@
 // Anything not yet confirmed is left as a `placeholder` so the page labels it clearly
 // instead of inventing details. Replace placeholders with real content when you have it.
 import type { Artwork } from './earthDayGallery';
-import { calendarHref } from './fallExhibition';
 import { photos, type Photo } from './photos';
 import alexZhangPortrait from '../assets/officer-portraits/alex-zhang.webp';
 import alyanAjaniPortrait from '../assets/officer-portraits/alyan-ajani.webp';
@@ -26,9 +25,10 @@ const leads = {
   mayumi: { name: 'Mayumi Caisip', portrait: mayumiCaisipPortrait, email: 'mcaisip2@illinois.edu' },
 } satisfies Record<string, ProjectLead>;
 
-export type ProjectStatus = 'active' | 'recurring' | 'upcoming' | 'in-development';
+export type ProjectStatus = 'active' | 'recurring' | 'upcoming' | 'in-development' | 'completed';
 
 export const projectStatusLabel: Record<ProjectStatus, string> = {
+  completed: 'Past event',
   active: 'Active partnership',
   recurring: 'Recurring event',
   upcoming: 'Coming soon',
@@ -120,21 +120,21 @@ export interface Project {
 const allProjects: Project[] = [
   {
     // Has its own page (src/pages/FallExhibitionPage.tsx); event content lives in content/fallExhibition.ts.
+    involvement: 'Explore the photos and learn about the exhibition.',
     slug: 'fall-exhibition',
-    primaryAction: { href: calendarHref, label: 'Add it to your calendar' },
+    primaryAction: { href: '/work/fall-exhibition#photos', label: 'See event photos' },
     ctaLabel: 'See the event',
     title: 'It’s Okay to Fall',
     titleAccent: 'Fall',
     category: 'Fall exhibition',
-    status: 'recurring',
-    // TODO: confirm whether this runs every fall.
-    statusLabel: 'Fall semester event',
+    status: 'completed',
+    statusLabel: 'Past event',
     lead: leads.alex,
     coLead: leads.amelia,
     teaser:
       'A campus-wide mental health art initiative built around one collective artwork that everyone adds to, because it’s okay to stumble and no one should have to get back up alone.',
     summary:
-      'A campus-wide mental health art initiative built around one collective artwork that students, faculty, and visitors add to throughout the day. November 10, 2026, Illini Union, Illini Room C (first floor).',
+      'A campus-wide mental health art initiative built around one collective artwork that students, faculty, and visitors added to throughout the day. November 10, 2026, Illini Union, Illini Room C (first floor).',
     eventDetails: { date: 'November 10, 2026', time: '10am to 8pm', location: 'Illini Union, Illini Room C (first floor)' },
     // Chosen to reflect the theme (making art together, no pressure), not taken at the exhibition.
     cover: { photo: photos.drawingTable, caption: 'Making art together' },
@@ -159,26 +159,7 @@ const allProjects: Project[] = [
       diagram: 'canvas-on-stands',
       // TODO: add the canvas size and number of boards once confirmed.
     },
-    sections: [
-      {
-        title: 'Show your work',
-        body: 'Student artists can submit work to be displayed at the exhibition.',
-        link: {
-          href: 'https://docs.google.com/forms/d/e/1FAIpQLSdMsIZ6nAlQUgsdM1ZSw2zdMfN7KSnMi8G4BpeGr6NJr4ZLyQ/viewform',
-          label: 'Submit your artwork',
-        },
-      },
-    ],
-    involvement:
-      'Help curate, recruit artists, design the community artwork, or run the event. Artists who want their work displayed can submit it through the artwork form. Clubs that want to collaborate can use the club form.',
-    submissionForm: {
-      href: 'https://docs.google.com/forms/d/e/1FAIpQLSdMsIZ6nAlQUgsdM1ZSw2zdMfN7KSnMi8G4BpeGr6NJr4ZLyQ/viewform',
-      label: 'Submit your artwork',
-    },
-    collaborationForm: {
-      href: 'https://docs.google.com/forms/d/e/1FAIpQLSekWqZDva0h-gnXA1xIhm3r8aJs-jF73u1RCO7mJqYqs7Uyug/viewform',
-      label: 'Club collaboration form',
-    },
+
   },
   {
     slug: 'trinity-community-food-pantry',
